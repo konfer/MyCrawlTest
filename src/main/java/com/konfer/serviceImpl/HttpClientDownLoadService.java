@@ -1,5 +1,6 @@
 package com.konfer.serviceImpl;
 
+import com.konfer.Util.PageDownLoadUtil;
 import com.konfer.entity.Page;
 import com.konfer.service.IDownLoadService;
 
@@ -7,6 +8,8 @@ public class HttpClientDownLoadService implements IDownLoadService
 {
     public Page downLoad(String url)
     {
-        return null;
+        Page page=new Page();
+        page.setContent(PageDownLoadUtil.getPageContext(url));
+        return page;
     }
 }
