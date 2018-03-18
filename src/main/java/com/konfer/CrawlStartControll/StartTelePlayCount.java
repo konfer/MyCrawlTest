@@ -3,28 +3,31 @@ package com.konfer.CrawlStartControll;
 import com.konfer.entity.Page;
 import com.konfer.service.IDownLoadService;
 import com.konfer.service.IProcessService;
+import com.konfer.service.IStoreService;
 import com.konfer.serviceImpl.HttpClientDownLoadService;
 
-public class StartTelePlayCount
+public class StartFilmPlayCount
 {
-    private Page TelePlayPage;
+    private Page FilmPlayPage;
     private String url;
-    private IDownLoadService TelePlayDownLoadService=new HttpClientDownLoadService();
+    private IDownLoadService downLoadService;
     private IProcessService processService;
+    private IStoreService storeService;
+    public long FilmPlayNum;
 
     public void setProcessService(IProcessService processService)
     {
         this.processService = processService;
     }
 
-    private void setTelePlayPage(Page TelePage)
+    private void setFilmPlayPage(Page FilmPage)
     {
-        this.TelePlayPage=TelePage;
+        this.FilmPlayPage=FilmPage;
     }
 
-    public Page getTelePlayPage()
+    public Page getFilmPlayPage()
     {
-        return TelePlayPage;
+        return FilmPlayPage;
     }
 
     public void setUrl(String url)
@@ -32,28 +35,42 @@ public class StartTelePlayCount
         this.url = url;
     }
 
-    public IDownLoadService getTelePlayDownLoadService()
+    public IDownLoadService getDownLoadService()
     {
-        return TelePlayDownLoadService;
+        return downLoadService;
     }
 
-    public void setTelePlayDownLoadService(IDownLoadService telePlayDownLoadService)
+    public void setDownLoadService(IDownLoadService downLoadService)
     {
-        TelePlayDownLoadService = telePlayDownLoadService;
+        this.downLoadService = downLoadService;
     }
 
-    public void downLoadPage()
+    public IStoreService getStoreService()
     {
-        Page telePage=TelePlayDownLoadService.downLoad(this.url);
-        setTelePlayPage(telePage);
+        return storeService;
+    }
+
+    public void setStoreService(IStoreService storeService)
+    {
+        this.storeService = storeService;
+    }
+
+    private void downLoadPage()
+    {
+        Page FilmPage=downLoadService.downLoad(this.url);
+        setFilmPlayPage(FilmPage);
     }
 
 
     public void proccessPage()
     {
-        this.processService.process(TelePlayPage);
+        downLoadPage();
+        this.processService.process(FilmPlayPage);
     }
 
-
+    public void storePageInfo()
+    {
+        this.storeService.store(FilmPlayPage);
+    }
 
 }

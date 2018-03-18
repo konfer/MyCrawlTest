@@ -15,6 +15,14 @@ public class PageEntityTest
         System.out.println(p.getContent());
     }
 
+    @Test
+    public void testYoukukPageDownLoad()
+    {
+        HttpClientDownLoadService downLoadService=new HttpClientDownLoadService();
+        Page p=downLoadService.downLoad(TestConfiguration.FilmPlayofBeautySmileUrl);
+        System.out.println(p.getContent());
+    }
+
 
 
 }
