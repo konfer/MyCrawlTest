@@ -11,7 +11,8 @@ public class Page
     private String againstNum;
 
     private String tvNum;
-    private String url;
+    private String totalNumUrl;
+    private String playPageUrl;
     private String episodeNum;
 
     public String getContent()
@@ -94,14 +95,24 @@ public class Page
         this.tvNum = tvNum;
     }
 
-    public String getUrl()
+    public String getTotalNumUrl()
     {
-        return url;
+        return totalNumUrl;
     }
 
-    public void setUrl(String url)
+    public void setTotalNumUrl(String totalNumUrl)
     {
-        this.url = url;
+        this.totalNumUrl = totalNumUrl;
+    }
+
+    public String getPlayPageUrl()
+    {
+        return playPageUrl;
+    }
+
+    public void setPlayPageUrl(String playPageUrl)
+    {
+        this.playPageUrl = playPageUrl;
     }
 
     public String getEpisodeNum()
